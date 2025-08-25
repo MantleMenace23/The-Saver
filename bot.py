@@ -99,7 +99,7 @@ async def saveme(interaction: discord.Interaction):
     colour=discord.Colour(ROLE_COLOR)  # use config color
 )
 
-        )
+        
 
     # Give role to the user
     await user.add_roles(role)

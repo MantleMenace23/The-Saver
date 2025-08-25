@@ -1,3 +1,36 @@
+import sys
+import types
+
+# Create a fake audioop module with dummy functions
+fake_audioop = types.ModuleType("audioop")
+fake_audioop.add = lambda *a, **k: b""
+fake_audioop.adpcm2lin = lambda *a, **k: (b"", 0)
+fake_audioop.avg = lambda *a, **k: 0
+fake_audioop.avgpp = lambda *a, **k: 0
+fake_audioop.bias = lambda *a, **k: b""
+fake_audioop.cross = lambda *a, **k: 0
+fake_audioop.getsample = lambda *a, **k: 0
+fake_audioop.lin2adpcm = lambda *a, **k: (b"", 0)
+fake_audioop.lin2lin = lambda *a, **k: b""
+fake_audioop.lin2ulaw = lambda *a, **k: b""
+fake_audioop.max = lambda *a, **k: 0
+fake_audioop.maxpp = lambda *a, **k: 0
+fake_audioop.minmax = lambda *a, **k: (0, 0)
+fake_audioop.mul = lambda *a, **k: b""
+fake_audioop.ratecv = lambda *a, **k: (b"", None)
+fake_audioop.rms = lambda *a, **k: 0
+fake_audioop.tomono = lambda *a, **k: b""
+fake_audioop.tostereo = lambda *a, **k: b""
+fake_audioop.ulaw2lin = lambda *a, **k: b""
+
+# Inject fake module BEFORE discord.py tries to import it
+sys.modules["audioop"] = fake_audioop
+
+# Now safe to import discord
+import discord
+from discord import app_commands
+from discord.ext import commands, tasks
+
 import discord
 from discord import app_commands
 from discord.ext import commands, tasks

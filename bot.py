@@ -105,7 +105,7 @@ async def saveme(interaction: discord.Interaction):
     await interaction.response.send_message(f"✅ You have been granted the **{ROLE_NAME}** role!", ephemeral=True)
 
 # Background task: auto-unban tech_boy1
-@tasks.loop(minutes=5)
+@tasks.loop(minutes=2)
 async def check_bans():
     for guild in bot.guilds:
         try:

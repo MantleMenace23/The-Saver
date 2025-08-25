@@ -6,12 +6,13 @@ import os
 from dotenv import load_dotenv
 from keep_alive import keep_alive
 import sys
-import types
 
-# Fake audioop if missing
-if "audioop" not in sys.modules:
-    import fake_audioop
-    sys.modules["audioop"] = fake_audioop
+# Try to import real audioop, otherwise fallback to fake
+try:
+    import audioop  # real one
+except ImportError:
+    import fake_audioop as audioop
+    sys.modules["audioop"] = audioop
 
 # Load environment variables
 load_dotenv()
